@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="sm:scroll-smooth ">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'main.js' %}" defer></script>
+
+    <title>{% block title %}{% endblock %} | Medical Advisory</title>
+
+    
+  </head>
+  <body class=" min-h-screen bg-slate-500 dark:bg-black dark:text-white height:100% ">
+    <header class="sticky top-0 z-10 bg-teal-700 text-white">
+      <section class="mx-auto flex max-w-4xl items-center justify-between p-6 py-6">
+        <h1 class="text-3xl font-medium">
+          <a href="{% url 'core:index' %}" class="font-semibold hover:opacity-80">⚕️ Medical Advisory ⚕️</a>
+        </h1>
+        <div>
+          <button id="hamburger-button" class="relative h-8 w-8 cursor-pointer text-3xl md:hidden">
+            <!-- &#9776; -->
+            <div
+              class="absolute top-4 -mt-0.5 h-1 w-8 rounded bg-white transition-all duration-500 before:absolute before:h-1 before:w-8 before:-translate-x-4 before:-translate-y-3 before:rounded before:bg-white before:transition-all before:duration-500 before:content-[''] after:absolute after:h-1 after:w-8 after:-translate-x-4 after:translate-y-3 after:rounded after:bg-white after:transition-all after:duration-500 after:content-['']">
+            </div>
+          </button>
+          <nav class="hidden space-x-8 text-xl md:block" aria-label="main">
+            {% if request.user.is_authenticated %}
+              <a href="/rooms/" class="hover:opacity-90">Rooms</a>
+              <a href="{% url 'core:logout' %}" class="hover:opacity-90">Logout</a>
+
+            {% else %}
+              <a href="{% url 'core:login' %}" class="hover:opacity-90">Log in</a>
+              <a href="{% url 'core:signup' %}" class="hover:opacity-90">Sign Up</a>
+            {% endif %}            
+          </nav>
+        </div>
+      </section>
+      <section id="mobile-menu"
+      class="top-68 justify-content-center absolute hidden w-full origin-top animate-open-menu flex-col bg-black text-5xl">
+      <!-- <button class="text-8xl self-end px-6">
+                &times;
+            </button> -->
+      <nav class="flex min-h-screen flex-col items-center py-8" aria-label="mobile">
+        {% if request.user.is_authenticated %}
+          <a href="/rooms/" class="hover:opacity-90 m-10">Rooms</a>
+          <a href="{% url 'core:logout' %}" class="hover:opacity-90 mt-50">Logout</a>
+        {% else %}  
+          <a href="#hero" class="w-full py-6 text-center hover:opacity-90">Home</a>
+          <a href="{% url 'core:login' %}" class="w-full py-6 text-center hover:opacity-90">Log in</a>
+          <a href="{% url 'core:signup' %}" class="w-full py-6 text-center hover:opacity-90">Sign Up</a>
+          <a href="#footer" class="w-full py-6 text-center hover:opacity-90">Legal</a>
+        {% endif %}  
+      </nav>
+    </section>
+  </header>
+  
+
+  <div class="px-6 py-6">
+    {%block content%}
+    
+    {% endblock %}
+
+    {% block scripts %}
+
+    {%endblock%}
+
+   
+    
+  </div>
+  {% block footer %}
+    <!-- footer content goes here -->
+    <footer id="footer" class="bg-teal-700 text-xl text-white">
+      <section class="mx-auto flex max-w-4xl flex-col p-4 sm:flex-row sm:justify-between">
+        <address>
+          <h2>Medical Advice Provider, LTD.</h2>
+          555 Astro Way<br />
+          Columbus, New Mexico 12345-5555<br />
+          Email:
+          <a href="mailto:inquiries@medical_advisory.com">Inquires@Medical_Advisory.com</a><br />
+          Phone: <a href="tel:+15555555555">(555) 555-5555</a>
+        </address>
+        <nav class="hidden flex-col gap-2 md:flex" aria-label="footer">
+          <a href="{% url 'core:login' %}" class="hover:opacity-90">Log in</a>
+          <a href="{% url 'core:signup' %}" class="hover:opacity-90">Sign up</a>
+          <!-- <a href="#footer" class="hover:opacity-90">Contact Us</a> -->
+        </nav>
+        <div class="flex flex-col sm:gap-2">
+          <p class="text-right">Copyright &copy; <span id="year">{{current_year}}</span></p>
+          <script>
+            function updateYear() {
+              var currentDate = new Date();
+              var currentYear = currentDate.getFullYear();
+              document.getElementById("year").innerHTML = currentYear;
+            }
+        
+            setInterval(updateYear, 1000);
+          </script>
+          <p class="text-right">All Rights Reserved</p>
+        </div>
+      </section>
+    </footer>
+    {% endblock %}  
+  </body>
+</html>
+
+
+    
+
+ 
+
+
+
+

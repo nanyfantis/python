@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+<main class="mx-auto max-w-4xl class=flex-grow">
+  
+    <section  id="hero"
+      class="widescreen:section-min-height tallscreen:section-min-height mb-12 flex scroll-mt-40 flex-col-reverse items-center justify-center gap-8 p-6 sm:flex-row mt-10">
+      <article class="sm:w-1/2">
+        <h2 class="max-w-md text-center text-4xl font-bold text-slate-900 dark:text-white sm:text-left sm:text-5xl">
+          Our Mission is 
+          <span class="text-indigo-700 dark:text-indigo-300">To Provide</span>
+          medical Advisory. 
+        </h2>
+        <p class="mt-4 max-w-md text-center text-2xl text-slate-700 dark:text-slate-400 sm:text-left">
+          Because you are not alone to the medical field and everyone deserves a right treatment!
+        </p>
+        <p class="mt-4 max-w-md text-center text-2xl text-slate-700 dark:text-slate-400 sm:text-left">
+          Think Medical Advisory.
+        </p>
+        <br>
+        <p>
+          <img class="object-scale-down rounded-xl" src="{% static 'img/advisory.png'%}" alt="Advisory Dab" />
+        </p>
+      </article>
+
+  </section>
+
+ </main>
+ 
+
+ {%  endblock %}
+
+
+
+
+
+
+
+
+
+ 
